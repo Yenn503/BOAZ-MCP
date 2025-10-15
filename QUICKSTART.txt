@@ -1,0 +1,89 @@
+BOAZ MCP - Quick Start Guide
+=============================
+
+Documentation Created:
+----------------------
+1. README.md      - Comprehensive overview and quick start
+2. INSTALL.md     - Detailed installation instructions  
+3. USAGE.md       - Usage examples and workflows
+4. API.md         - Complete MCP tool reference with server implementation
+5. setup.sh       - Automated installation script
+6. mcp_config.json - Example MCP configuration for Claude Desktop
+
+Getting Started:
+----------------
+
+1. Run Installation:
+   chmod +x setup.sh
+   ./setup.sh
+
+2. Configure Claude Desktop:
+   - Open: ~/Library/Application Support/Claude/claude_desktop_config.json (macOS)
+   - Add configuration from mcp_config.json (update paths)
+   - Restart Claude Desktop
+
+3. Implement MCP Server:
+   - Copy full server implementation from API.md
+   - Save to: boaz_mcp/server.py
+   - Ensure it's executable: chmod +x boaz_mcp/server.py
+
+4. Test Basic Usage:
+   cd BOAZ_beta
+   python3 Boaz.py -h
+
+Key Features:
+-------------
+- 77+ process injection loaders
+- 14+ encoding schemes (UUID, AES, ChaCha20, etc.)
+- LLVM obfuscation (Pluto & Akira)
+- Anti-emulation & anti-forensic capabilities
+- Memory guard & threadless injection
+- ETW bypass & API unhooking
+
+Important Notes:
+---------------
+- FOR AUTHORIZED RED TEAM OPERATIONS ONLY
+- Obtain written permission before use
+- Use only in isolated environments
+- Document all testing activities
+- Comply with all applicable laws
+
+Documentation Structure:
+-----------------------
+README.md      → Overview, features, quick examples
+INSTALL.md     → Step-by-step installation guide
+USAGE.md       → Detailed usage examples, workflows
+API.md         → MCP server implementation, tool reference
+setup.sh       → Automated setup script
+mcp_config.json → Configuration examples
+
+Common Workflows:
+-----------------
+
+1. Basic Evasion:
+   python3 Boaz.py -f payload.exe -o output.exe -l 16 -e uuid
+
+2. EDR Bypass:
+   python3 Boaz.py -f beacon.exe -o evasive.exe -l 37 -e aes -c akira -obf -a -etw
+
+3. Memory Scanner Evasion:
+   python3 Boaz.py -f implant.exe -o safe.exe -l 51 -e rc4 -dream 2000
+
+4. Maximum Evasion:
+   python3 Boaz.py -f payload.exe -o max.exe -l 69 -e aes2 -c akira -obf -a -etw -cfg -d -af
+
+Next Steps:
+-----------
+1. Read README.md for overview
+2. Follow INSTALL.md for installation
+3. Review USAGE.md for examples
+4. Implement server from API.md
+5. Configure Claude Desktop with mcp_config.json
+
+Support:
+--------
+- GitHub Issues for bug reports
+- Documentation in *.md files
+- Community forums for discussions
+
+Remember: Use responsibly and legally!

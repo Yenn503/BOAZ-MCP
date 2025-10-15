@@ -1,0 +1,249 @@
+{
+  "mcpServers": {
+    "boaz": {
+      "command": "python3",
+      "args": [
+        "/Users/testinglaptop/Desktop/BOAZ-MCP/boaz_mcp/server.py"
+      ],
+      "env": {
+        "BOAZ_PATH": "/Users/testinglaptop/Desktop/BOAZ-MCP/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "/Users/testinglaptop/Desktop/BOAZ-MCP/BOAZ_beta/output"
+      },
+      "description": "BOAZ MCP Server - AI-assisted red team evasion framework",
+      "metadata": {
+        "version": "1.0",
+        "author": "BOAZ Development Team",
+        "capabilities": [
+          "payload_generation",
+          "evasion_techniques",
+          "obfuscation",
+          "anti_analysis"
+        ],
+        "security_notice": "For authorized security testing only. Requires proper authorization.",
+        "documentation": {
+          "readme": "/Users/testinglaptop/Desktop/BOAZ-MCP/README.md",
+          "install": "/Users/testinglaptop/Desktop/BOAZ-MCP/INSTALL.md",
+          "usage": "/Users/testinglaptop/Desktop/BOAZ-MCP/USAGE.md",
+          "api": "/Users/testinglaptop/Desktop/BOAZ-MCP/API.md"
+        }
+      }
+    }
+  },
+  "configuration_notes": {
+    "installation_paths": {
+      "macOS": "~/Library/Application Support/Claude/claude_desktop_config.json",
+      "linux": "~/.config/Claude/claude_desktop_config.json",
+      "windows": "%APPDATA%/Claude/claude_desktop_config.json"
+    },
+    "setup_instructions": [
+      "1. Copy the 'boaz' server configuration above",
+      "2. Paste into your Claude Desktop configuration file",
+      "3. Update paths to match your installation location",
+      "4. Ensure BOAZ_PATH points to the BOAZ_beta directory",
+      "5. Restart Claude Desktop application",
+      "6. Verify connection in Claude's MCP servers list"
+    ],
+    "path_customization": {
+      "description": "Update these paths based on your installation:",
+      "server_script": "Path to boaz_mcp/server.py",
+      "boaz_path": "Path to BOAZ_beta directory",
+      "output_dir": "Path to desired output directory (optional)"
+    },
+    "troubleshooting": {
+      "server_not_starting": [
+        "Verify Python 3.8+ is installed: python3 --version",
+        "Check MCP SDK is installed: pip3 show mcp",
+        "Ensure server.py is executable: chmod +x server.py",
+        "Check logs in ~/Library/Logs/Claude/mcp*.log"
+      ],
+      "tools_not_available": [
+        "Verify BOAZ_PATH environment variable is set correctly",
+        "Check Boaz.py exists at BOAZ_PATH/Boaz.py",
+        "Ensure all dependencies are installed",
+        "Review server implementation in API.md"
+      ],
+      "permission_errors": [
+        "Ensure user has read access to BOAZ directory",
+        "Check write permissions on output directory",
+        "Verify Python can import from BOAZ_PATH"
+      ]
+    }
+  },
+  "example_configurations": {
+    "minimal": {
+      "description": "Minimal configuration with only required fields",
+      "config": {
+        "mcpServers": {
+          "boaz": {
+            "command": "python3",
+            "args": ["/path/to/boaz_mcp/server.py"],
+            "env": {
+              "BOAZ_PATH": "/path/to/BOAZ_beta"
+            }
+          }
+        }
+      }
+    },
+    "custom_output": {
+      "description": "Configuration with custom output directory",
+      "config": {
+        "mcpServers": {
+          "boaz": {
+            "command": "python3",
+            "args": ["/path/to/boaz_mcp/server.py"],
+            "env": {
+              "BOAZ_PATH": "/path/to/BOAZ_beta",
+              "BOAZ_OUTPUT_DIR": "/custom/output/path"
+            }
+          }
+        }
+      }
+    },
+    "with_python_venv": {
+      "description": "Configuration using Python virtual environment",
+      "config": {
+        "mcpServers": {
+          "boaz": {
+            "command": "/path/to/venv/bin/python3",
+            "args": ["/path/to/boaz_mcp/server.py"],
+            "env": {
+              "BOAZ_PATH": "/path/to/BOAZ_beta",
+              "VIRTUAL_ENV": "/path/to/venv"
+            }
+          }
+        }
+      }
+    },
+    "docker": {
+      "description": "Configuration for Docker-based BOAZ",
+      "config": {
+        "mcpServers": {
+          "boaz": {
+            "command": "docker",
+            "args": [
+              "run",
+              "--rm",
+              "-i",
+              "-v",
+              "$HOME:/host_home",
+              "-v",
+              "$PWD:/boaz/output",
+              "mmttxx20/boaz-builder",
+              "python3",
+              "/boaz/boaz_mcp/server.py"
+            ],
+            "env": {
+              "BOAZ_PATH": "/boaz/BOAZ_beta"
+            }
+          }
+        }
+      }
+    },
+    "multiple_instances": {
+      "description": "Running multiple BOAZ instances (e.g., dev and prod)",
+      "config": {
+        "mcpServers": {
+          "boaz-dev": {
+            "command": "python3",
+            "args": ["/path/to/boaz-dev/boaz_mcp/server.py"],
+            "env": {
+              "BOAZ_PATH": "/path/to/boaz-dev/BOAZ_beta"
+            }
+          },
+          "boaz-prod": {
+            "command": "python3",
+            "args": ["/path/to/boaz-prod/boaz_mcp/server.py"],
+            "env": {
+              "BOAZ_PATH": "/path/to/boaz-prod/BOAZ_beta"
+            }
+          }
+        }
+      }
+    }
+  },
+  "security_best_practices": {
+    "access_control": [
+      "Restrict BOAZ directory permissions to authorized users only",
+      "Use dedicated user account for running BOAZ operations",
+      "Implement audit logging for all payload generation",
+      "Store output in secure, monitored directory"
+    ],
+    "operational_security": [
+      "Only use in isolated lab environments or with authorization",
+      "Maintain chain of custody for generated payloads",
+      "Document all testing activities and authorizations",
+      "Implement network segmentation for BOAZ infrastructure"
+    ],
+    "configuration_hardening": [
+      "Use absolute paths to prevent path traversal",
+      "Set restrictive file permissions on configuration",
+      "Regularly update BOAZ and dependencies",
+      "Monitor MCP server logs for suspicious activity"
+    ]
+  },
+  "integration_examples": {
+    "claude_desktop": {
+      "description": "Standard Claude Desktop integration",
+      "steps": [
+        "1. Open Claude Desktop",
+        "2. Click Settings (gear icon)",
+        "3. Navigate to Developer",
+        "4. Click 'Edit Config' for MCP servers",
+        "5. Add BOAZ server configuration",
+        "6. Save and restart Claude Desktop",
+        "7. Verify 'boaz' appears in available tools"
+      ]
+    },
+    "api_access": {
+      "description": "Programmatic MCP access via API",
+      "example": {
+        "language": "python",
+        "code": [
+          "from mcp import ClientSession, StdioServerParameters",
+          "from mcp.client.stdio import stdio_client",
+          "",
+          "server_params = StdioServerParameters(",
+          "    command='python3',",
+          "    args=['/path/to/boaz_mcp/server.py'],",
+          "    env={'BOAZ_PATH': '/path/to/BOAZ_beta'}",
+          ")",
+          "",
+          "async with stdio_client(server_params) as (read, write):",
+          "    async with ClientSession(read, write) as session:",
+          "        await session.initialize()",
+          "        tools = await session.list_tools()",
+          "        # Use BOAZ tools programmatically"
+        ]
+      }
+    }
+  },
+  "advanced_features": {
+    "custom_environment_variables": {
+      "BOAZ_PATH": "Path to BOAZ_beta directory (required)",
+      "BOAZ_OUTPUT_DIR": "Default output directory for generated payloads",
+      "BOAZ_TEMP_DIR": "Temporary directory for intermediate files",
+      "BOAZ_LOG_LEVEL": "Logging level (DEBUG, INFO, WARNING, ERROR)",
+      "BOAZ_MAX_PAYLOAD_SIZE": "Maximum allowed payload size in bytes",
+      "BOAZ_ALLOWED_LOADERS": "Comma-separated list of allowed loader numbers",
+      "BOAZ_AUDIT_LOG": "Path to audit log file"
+    },
+    "resource_limits": {
+      "description": "Optional resource limits for security",
+      "max_payload_size": "100MB",
+      "timeout_seconds": 300,
+      "max_concurrent_jobs": 1,
+      "disk_quota": "1GB"
+    }
+  },
+  "version_info": {
+    "config_version": "1.0",
+    "mcp_protocol_version": "1.0",
+    "boaz_version": "beta",
+    "last_updated": "2025-01",
+    "compatibility": {
+      "claude_desktop": ">=1.0",
+      "python": ">=3.8",
+      "mcp_sdk": ">=0.1.0"
+    }
+  }
+}
