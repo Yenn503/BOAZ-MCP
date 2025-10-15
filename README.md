@@ -1,5 +1,3 @@
-# BOAZ MCP Server
-
 <div align="center">
   <img src="BOAZ-MCP.png" alt="BOAZ MCP Logo" width="300">
 </div>
@@ -12,7 +10,9 @@
 
 ## Overview
 
-BOAZ is a sophisticated evasion research framework designed for **authorized red team operations and security research**. This project extends BOAZ's capabilities by implementing a **Model Context Protocol (MCP) server** that enables AI assistants to interact with the framework through a standardized, secure interface.
+BOAZ is a sophisticated evasion research framework designed for **authorised red team operations and security research**. This project extends BOAZ's capabilities by implementing a **Model Context Protocol (MCP) server** that enables AI assistants to interact with the framework through a standardised, secure interface.
+
+heres the original repo for BOAZ: https://github.com/thomasxm/Boaz_beta
 
 ### AI Agent Integration
 
@@ -20,12 +20,12 @@ This MCP implementation bridges the gap between advanced evasion techniques and 
 
 - **Streamline payload generation** through natural language interactions
 - **Access 77+ specialized loaders** and evasion techniques via standardized tools
-- **Validate configurations** and analyze binaries through AI-guided workflows
+- **Validate configurations** and analyse binaries through AI-guided workflows
 - **Maintain security boundaries** with controlled, auditable access to sensitive operations
 
-The MCP server provides a clean abstraction layer that allows AI agents to safely interact with BOAZ's complex evasion framework while maintaining proper authorization checks and operational security controls. This integration represents a significant advancement in making advanced red team tools more accessible and manageable through AI-assisted workflows.
+The MCP server provides a clean abstraction layer that allows AI agents to safely interact with BOAZ's complex evasion framework while maintaining proper authorisation checks and operational security controls. This integration represents a significant advancement in making advanced red team tools more accessible and manageable through AI-assisted workflows.
 
-> **WARNING**: This tool is intended for authorized security testing, research, and educational purposes only. Misuse of this tool may violate laws and regulations. Users are responsible for ensuring compliance with all applicable laws and obtaining proper authorization before use.
+> **WARNING**: This tool is intended for authorised security testing, research, and educational purposes only. Misuse of this tool may violate laws and regulations. Users are responsible for ensuring compliance with all applicable laws and obtaining the necessary authorisation before use.
 
 ## Key Features
 
@@ -40,13 +40,13 @@ The MCP server provides a clean abstraction layer that allows AI agents to safel
 ### Heuristic Evasion
 - **Anti-Emulation Techniques**: File system, process, and network-based checks
 - **Junk API Injection**: Benign API sequences to vary call patterns and mimicry attacks
-- **API Unhooking**: Multiple unhooking techniques including Halo's Gate and custom implementations
+- **API Unhooking**: Multiple unhooking techniques, including Halo's Gate and custom implementations
 - **Direct Syscalls**: SysWhisper integration with random jump and MingW+NASM modes
 - **Sleep Obfuscation**: Custom Ekko with stack encryption
 - **PIC Conversion**: Support for Donut, PE2SH, RC4, Amber, Shoggoth, Stardust, Augment
 - **Hook Detection**: Compile-time hook detection utility (check_hook.exe)
 
-### Behavioral Evasion
+### Behavioural Evasion
 - **77+ Process Injection Loaders**: Advanced code execution and process injection techniques
 - **ETW Patching**: Both hot-patch and patchless ETW bypass methods
 - **Parent PID Spoofing**: Process ancestry manipulation
@@ -95,7 +95,7 @@ For comprehensive usage examples, see [USAGE.md](USAGE.md).
 
 ## MCP Server Integration
 
-The BOAZ MCP server provides AI assistants with controlled access to BOAZ functionality through standardized tools:
+The BOAZ MCP server provides AI assistants with controlled access to BOAZ functionality through standardised tools:
 
 ### Available MCP Tools
 
@@ -112,7 +112,7 @@ If you're an AI assistant helping users with BOAZ-MCP, see **[AI_AGENTS.md](AI_A
 - Best practices for AI-assisted payload generation
 - Parameter recommendations and explanations
 - Error handling and troubleshooting
-- Security considerations and authorization checks
+- Security considerations and authorisation checks
 - Example conversations and response templates
 
 ### Configuration
@@ -211,7 +211,7 @@ python3 Boaz.py \
 
 ## Supported Loaders
 
-BOAZ provides 77+ specialized loaders for different evasion scenarios:
+BOAZ provides 77+ specialised loaders for different evasion scenarios:
 
 - **Loader 1-11**: Classic syscall variants with threadless execution
 - **Loader 16-20**: Userland API injection techniques
@@ -232,14 +232,14 @@ Supported payload encodings:
 
 ## Security Considerations
 
-### Authorized Use Only
+### Authorised Use Only
 - Obtain written permission before testing on any system
-- Use only in isolated lab environments or with explicit authorization
+- Use only in isolated lab environments or with explicit authorisation
 - Comply with all applicable laws and regulations
 - Document all testing activities
 
 ### Operational Security
-- Never use BOAZ on production systems without authorization
+- Never use BOAZ on production systems without authorisation
 - Maintain chain of custody for generated payloads
 - Use secure communication channels for payload delivery
 - Implement proper access controls on BOAZ infrastructure
@@ -294,7 +294,7 @@ Based on multi-layered evasion concepts from:
 Contributions are welcome! Please:
 1. Fork the repository
 2. Create a feature branch
-3. Submit a pull request with detailed description
+3. Submit a pull request with a detailed description
 
 ## License
 
@@ -302,7 +302,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Disclaimer
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. The authors and contributors are not responsible for any misuse or damage caused by this tool. Users assume all responsibility for ensuring their activities are legal and authorized.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. The authors and contributors are not responsible for any misuse or damage resulting from the use of this tool. Users assume all responsibility for ensuring their activities are legal and authorised.
 
 ## Contact
 
