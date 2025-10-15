@@ -1,7 +1,7 @@
 # BOAZ MCP Server
 
 <div align="center">
-  <img src="BOAZ-MCP.png" alt="BOAZ MCP Logo" width="300" height="300">
+  <img src="BOAZ-MCP.png" alt="BOAZ MCP Logo" width="300">
 </div>
 
 **BOAZ (Bypass, Obfuscate, Adapt, Zero-trace)** - MCP Integration for AI-Assisted Red Team Operations
