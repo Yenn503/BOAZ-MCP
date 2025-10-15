@@ -1,5 +1,9 @@
 # BOAZ MCP Server
 
+<div align="center">
+  <img src="BOAZ-MCP.png" alt="BOAZ MCP Logo" width="300" height="300">
+</div>
+
 **BOAZ (Bypass, Obfuscate, Adapt, Zero-trace)** - MCP Integration for AI-Assisted Red Team Operations
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -8,7 +12,18 @@
 
 ## Overview
 
-BOAZ is a sophisticated evasion research framework designed for **authorized red team operations and security research**. This MCP (Model Context Protocol) server enables AI assistants to interact with BOAZ's capabilities through a standardized interface, streamlining defensive evasion testing workflows.
+BOAZ is a sophisticated evasion research framework designed for **authorized red team operations and security research**. This project extends BOAZ's capabilities by implementing a **Model Context Protocol (MCP) server** that enables AI assistants to interact with the framework through a standardized, secure interface.
+
+### AI Agent Integration
+
+This MCP implementation bridges the gap between advanced evasion techniques and AI-assisted security workflows. By wrapping BOAZ's powerful capabilities in an MCP server, security researchers and red team operators can now leverage AI assistants to:
+
+- **Streamline payload generation** through natural language interactions
+- **Access 77+ specialized loaders** and evasion techniques via standardized tools
+- **Validate configurations** and analyze binaries through AI-guided workflows
+- **Maintain security boundaries** with controlled, auditable access to sensitive operations
+
+The MCP server provides a clean abstraction layer that allows AI agents to safely interact with BOAZ's complex evasion framework while maintaining proper authorization checks and operational security controls. This integration represents a significant advancement in making advanced red team tools more accessible and manageable through AI-assisted workflows.
 
 > **WARNING**: This tool is intended for authorized security testing, research, and educational purposes only. Misuse of this tool may violate laws and regulations. Users are responsible for ensuring compliance with all applicable laws and obtaining proper authorization before use.
 
