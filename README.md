@@ -77,21 +77,41 @@ chmod +x setup.sh
 
 For detailed installation instructions, see [INSTALL.md](INSTALL.md).
 
-### Basic Usage
+### AI-Assisted Usage
 
-```bash
-# Basic payload generation
-cd BOAZ_beta
-python3 Boaz.py -f /path/to/payload.exe -o output.exe -t donut -l 16 -e uuid
+BOAZ-MCP is designed for natural language interaction through AI assistants. Simply describe what you need:
 
-# With LLVM obfuscation
-python3 Boaz.py -f payload.exe -o output.exe -t donut -l 16 -e uuid -c akira -obf
-
-# Advanced options with anti-emulation
-python3 Boaz.py -f payload.exe -o output.exe -t donut -l 37 -e aes -c pluto -a -sleep -etw -cfg
+**Basic Payload Generation**
 ```
+"I need to generate a basic evasive payload from beacon.exe"
+```
+The AI will use loader 16 with UUID encoding for a reliable, balanced approach.
 
-For comprehensive usage examples, see [USAGE.md](USAGE.md).
+**Advanced Obfuscation**
+```
+"Generate a payload with LLVM obfuscation for maximum stealth"
+```
+The AI will apply Akira compiler with source code obfuscation and recommend optimal settings.
+
+**EDR Evasion**
+```
+"I'm targeting an environment with CrowdStrike. Generate a payload that evades EDR detection"
+```
+The AI will configure advanced evasion: memory guard loaders, AES encoding, ETW patching, API unhooking, and anti-emulation checks.
+
+**Entropy Optimisation**
+```
+"My payload has high entropy and keeps getting flagged. Can you help optimise it?"
+```
+The AI will analyse the binary, identify entropy issues, and regenerate with entropy reduction techniques.
+
+**Loader Discovery**
+```
+"Show me all available threadless injection loaders"
+```
+The AI will list loaders by category and explain the characteristics of each technique.
+
+For comprehensive usage examples and workflows, see [USAGE.md](USAGE.md).
 
 ## MCP Server Integration
 
