@@ -486,10 +486,23 @@ class BoazMCPServer:
             output = f"STDOUT:\n{result.stdout}\n\nSTDERR:\n{result.stderr}"
             if result.returncode == 0:
                 logger.info(f"Payload generated successfully: {args['output_file']}")
-                output = f"✅ Payload generated successfully at {args['output_file']}\n\n{output}"
+
+                # Check if output file was actually created
+                if os.path.exists(output_file):
+                    file_size = os.path.getsize(output_file)
+                    output = f"✅ **PAYLOAD GENERATED SUCCESSFULLY**\n\n"
+                    output += f"📂 **Output Path**: {output_file}\n"
+                    output += f"📊 **File Size**: {file_size:,} bytes ({file_size/1024:.2f} KB)\n"
+                    output += f"🎯 **Loader**: {args.get('loader', 'default')}\n"
+                    output += f"🔒 **Encoding**: {args.get('encoding', 'none')}\n"
+                    output += f"⚙️  **Compiler**: {args.get('compiler', 'mingw')}\n\n"
+                    output += f"The final executable is ready at:\n{output_file}\n\n"
+                    output += f"Build Details:\n{result.stdout}\n"
+                else:
+                    output = f"⚠️ BOAZ reported success but output file not found at {output_file}\n\n{output}"
             else:
                 logger.error(f"Payload generation failed with exit code {result.returncode}")
-                output = f"❌ Error generating payload (exit code {result.returncode})\n\n{output}"
+                output = f"❌ **ERROR GENERATING PAYLOAD** (exit code {result.returncode})\n\n{output}"
 
             return [TextContent(type="text", text=output)]
 
