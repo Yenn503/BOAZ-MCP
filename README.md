@@ -42,22 +42,6 @@ chmod +x setup.sh
 
 Add to your MCP client config:
 
-**Claude Desktop** (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
-```json
-{
-  "mcpServers": {
-    "boaz": {
-      "command": "python3",
-      "args": ["/path/to/BOAZ-MCP/boaz_mcp/server.py"],
-      "env": {
-        "BOAZ_PATH": "/path/to/BOAZ-MCP/BOAZ_beta",
-        "BOAZ_OUTPUT_DIR": "/path/to/BOAZ-MCP/BOAZ_beta/output"
-      }
-    }
-  }
-}
-```
-
 **Cursor IDE** (`~/.cursor/mcp.json`):
 ```json
 {
