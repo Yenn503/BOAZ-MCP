@@ -3,11 +3,11 @@
     "boaz": {
       "command": "python3",
       "args": [
-        "/Users/testinglaptop/Desktop/BOAZ-MCP/boaz_mcp/server.py"
+        "/path/to/BOAZ-MCP/boaz_mcp/server.py"
       ],
       "env": {
-        "BOAZ_PATH": "/Users/testinglaptop/Desktop/BOAZ-MCP/BOAZ_beta",
-        "BOAZ_OUTPUT_DIR": "/Users/testinglaptop/Desktop/BOAZ-MCP/BOAZ_beta/output"
+        "BOAZ_PATH": "/path/to/BOAZ-MCP/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "/path/to/BOAZ-MCP/BOAZ_beta/output"
       },
       "description": "BOAZ MCP Server - AI-assisted red team evasion framework",
       "metadata": {
@@ -21,10 +21,10 @@
         ],
         "security_notice": "For authorized security testing only. Requires proper authorization.",
         "documentation": {
-          "readme": "/Users/testinglaptop/Desktop/BOAZ-MCP/README.md",
-          "install": "/Users/testinglaptop/Desktop/BOAZ-MCP/INSTALL.md",
-          "usage": "/Users/testinglaptop/Desktop/BOAZ-MCP/USAGE.md",
-          "api": "/Users/testinglaptop/Desktop/BOAZ-MCP/API.md"
+          "readme": "./README.md",
+          "install": "./INSTALL.md",
+          "usage": "./USAGE.md",
+          "api": "./API.md"
         }
       }
     }

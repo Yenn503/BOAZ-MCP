@@ -67,7 +67,7 @@ The MCP server provides a clean abstraction layer that allows AI agents to safel
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/Yenn503/BOAZ-MCP.git
 cd BOAZ-MCP
 
 # Run the setup script
@@ -117,21 +117,26 @@ If you're an AI assistant helping users with BOAZ-MCP, see **[AI_AGENTS.md](AI_A
 
 ### Configuration
 
-Add to your Claude Desktop configuration (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
+Add to your Claude Desktop configuration (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS or `%APPDATA%\Claude\claude_desktop_config.json` on Windows):
 
 ```json
 {
   "mcpServers": {
     "boaz": {
       "command": "python3",
-      "args": ["/Users/testinglaptop/Desktop/BOAZ-MCP/boaz_mcp/server.py"],
+      "args": ["/path/to/BOAZ-MCP/boaz_mcp/server.py"],
       "env": {
-        "BOAZ_PATH": "/Users/testinglaptop/Desktop/BOAZ-MCP/BOAZ_beta"
+        "BOAZ_PATH": "/path/to/BOAZ-MCP/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "/path/to/BOAZ-MCP/BOAZ_beta/output"
       }
     }
   }
 }
 ```
+
+**Replace `/path/to/BOAZ-MCP` with your actual installation directory.**
+
+For Cursor IDE, edit `~/.cursor/mcp.json` instead.
 
 See [mcp_config.json](mcp_config.json) for a complete example.
 
