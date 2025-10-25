@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "boaz": {
+      "command": "/home/yenn/BOAZ-MCP/venv/bin/python",
+      "args": [
+        "/home/yenn/BOAZ-MCP/boaz_mcp/server.py"
+      ],
+      "env": {
+        "BOAZ_PATH": "/home/yenn/BOAZ-MCP/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "/home/yenn/BOAZ-MCP/output"
+      }
+    }
+  }
+}

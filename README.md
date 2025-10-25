@@ -59,6 +59,7 @@ Compiles Akira & Pluto LLVM obfuscators locally. Requires: Linux, 8GB+ RAM, buil
 
 **Auto-configuration available for:**
 - Claude Desktop
+- Claude Code CLI
 - Continue.dev (VS Code)
 - Cursor IDE
 - VS Code (Generic MCP)

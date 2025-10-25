@@ -66,11 +66,17 @@ create_config_json() {
 }
 EOF
     else
+        # Check if venv exists, use it if available
+        local python_cmd="python3"
+        if [ -f "${PROJECT_ROOT}/venv/bin/python" ]; then
+            python_cmd="${PROJECT_ROOT}/venv/bin/python"
+        fi
+
         cat << EOF
 {
   "mcpServers": {
     "boaz": {
-      "command": "python3",
+      "command": "${python_cmd}",
       "args": [
         "${MCP_SERVER}"
       ],
@@ -191,6 +197,17 @@ configure_vscode() {
     echo -e "${YELLOW}[NOTE]${NC} Ensure you have an MCP-compatible extension installed"
 }
 
+# Configure for Claude Code CLI
+configure_claude_code() {
+    echo -e "${BLUE}[INFO]${NC} Configuring Claude Code CLI..."
+
+    local config_path="$PROJECT_ROOT/.mcp.json"
+
+    create_config_json "$1" > "$config_path"
+    echo -e "${GREEN}[SUCCESS]${NC} Claude Code CLI configured at: $config_path"
+    echo -e "${YELLOW}[NOTE]${NC} Restart Claude Code CLI to load the MCP server"
+}
+
 # Show manual configuration
 show_manual_config() {
     echo -e "${CYAN}══════════════════════════════════════════════════════${NC}"
@@ -245,10 +262,11 @@ main() {
     echo "  2. Continue.dev (VS Code)"
     echo "  3. Cursor IDE"
     echo "  4. VS Code (generic MCP)"
-    echo "  5. All of the above"
-    echo "  6. Show manual configuration"
+    echo "  5. Claude Code CLI"
+    echo "  6. All of the above"
+    echo "  7. Show manual configuration"
     echo
-    read -p "Choice [1-6]: " -n 1 -r
+    read -p "Choice [1-7]: " -n 1 -r
     echo
 
     case $REPLY in
@@ -265,12 +283,16 @@ main() {
             configure_vscode "$use_docker"
             ;;
         5)
+            configure_claude_code "$use_docker"
+            ;;
+        6)
             configure_claude "$use_docker"
             configure_continue "$use_docker"
             configure_cursor "$use_docker"
             configure_vscode "$use_docker"
+            configure_claude_code "$use_docker"
             ;;
-        6)
+        7)
             show_manual_config "$use_docker"
             ;;
         *)
