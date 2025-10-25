@@ -14,10 +14,11 @@ BLUE='\033[0;34m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
-# Script directory
+# Script directory and project root
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-BOAZ_DIR="${SCRIPT_DIR}/BOAZ_beta"
-MCP_DIR="${SCRIPT_DIR}/boaz_mcp"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+BOAZ_DIR="${PROJECT_ROOT}/BOAZ_beta"
+MCP_DIR="${PROJECT_ROOT}/boaz_mcp"
 
 # Print banner
 print_banner() {

@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  boaz-mcp:
+    image: mmttxx20/boaz-builder:latest
+    container_name: boaz_mcp_server
+    stdin_open: true
+    tty: true
+    environment:
+      - BOAZ_PATH=/boaz/BOAZ_beta
+      - BOAZ_OUTPUT_DIR=/boaz/output
+    volumes:
+      # Mount BOAZ core directory
+      - ../BOAZ_beta:/boaz/BOAZ_beta:ro
+      # Mount your payloads directory
+      - ../payloads:/boaz/payloads:ro
+      # Mount output directory
+      - ../output:/boaz/output
+      # Mount MCP server code
+      - ../boaz_mcp:/boaz/boaz_mcp:ro
+      # Optional: Mount your home directory for access to files
+      - $HOME:/host_home:ro
+    working_dir: /boaz
+    command: python3 /boaz/boaz_mcp/server.py
+    shm_size: '1gb'
+    # Resource limits (adjust based on your system)
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 8G
+        reservations:
+          cpus: '2'
+          memory: 4G
+    # Keep container running for MCP communication
+    restart: unless-stopped
+    # Network mode host allows easier MCP communication
+    # Use bridge if you need isolation
+    network_mode: bridge

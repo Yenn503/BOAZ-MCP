@@ -74,39 +74,105 @@ python3 Boaz.py -f notepad.exe -o output/test.exe -l 16 -e uuid
 
 ## Setup
 
-### Prerequisites
-- Linux (Debian/Kali preferred)
-- Python 3.8+, Wine, CMake, Git, GCC, G++, MingW, LLVM, NASM
+### Quick Start (Docker - Recommended)
 
-### Installation
+**No compilation needed! Get started in 5 minutes.**
 
+**Option 1: Automated Setup (Easiest)**
 ```bash
 git clone https://github.com/Yenn503/BOAZ-MCP.git
 cd BOAZ-MCP
-chmod +x setup.sh
-./setup.sh
+chmod +x quickstart.sh
+./quickstart.sh
 ```
 
-### MCP Configuration
+**Option 2: Manual Setup**
+```bash
+# 1. Clone repository
+git clone https://github.com/Yenn503/BOAZ-MCP.git
+cd BOAZ-MCP
 
-Add to your MCP client config:
+# 2. Pull Docker image (includes pre-compiled LLVM obfuscators)
+docker pull mmttxx20/boaz-builder:latest
 
-**Cursor IDE** (`~/.cursor/mcp.json`):
+# 3. Configure for your AI client (Claude, Continue.dev, Cursor, etc.)
+chmod +x install/configure_mcp.sh
+./install/configure_mcp.sh
+
+# 4. Restart your AI client
+# Done! BOAZ tools will appear in your MCP client
+```
+
+**See [docs/DOCKER_QUICKSTART.md](docs/DOCKER_QUICKSTART.md) for detailed Docker setup guide.**
+**See [docker/README.md](docker/README.md) for Docker-specific documentation.**
+
+### Manual Installation (Advanced Users)
+
+If you prefer local installation or need to modify BOAZ code:
+
+**Prerequisites:**
+- Linux (Debian/Kali preferred)
+- Python 3.8+, Wine, CMake, Git, GCC, G++, MingW, LLVM, NASM
+- 8GB+ RAM for LLVM compilation
+- 60-90 minutes for full installation
+
+**Installation:**
+```bash
+git clone https://github.com/Yenn503/BOAZ-MCP.git
+cd BOAZ-MCP
+chmod +x install/setup.sh
+./install/setup.sh
+```
+
+**Note:** This compiles Akira and Pluto LLVM obfuscators from source (~30-60 mins). For faster setup, use Docker method above.
+**See [install/README.md](install/README.md) for detailed installation documentation.**
+
+### Supported AI Clients
+
+BOAZ MCP works with ALL MCP-compatible clients:
+
+- **Claude Desktop** - Full support
+- **Continue.dev** (VS Code) - Full support
+- **Cursor IDE** - Full support
+- **VS Code** (with MCP extension) - Full support
+- **Roo Code** - Full support
+- **Any MCP-compatible client** - Should work
+
+Use `install/configure_mcp.sh` to automatically configure your client.
+
+### Manual Configuration
+
+If the auto-configurator doesn't work, see examples for each client:
+
+**Claude Desktop** (`~/.config/Claude/claude_desktop_config.json`):
 ```json
 {
   "mcpServers": {
     "boaz": {
-      "command": "python3",
-      "args": ["/path/to/BOAZ-MCP/boaz_mcp/server.py"],
+      "command": "docker",
+      "args": [
+        "run", "--rm", "-i",
+        "-v", "$HOME/BOAZ-MCP/payloads:/boaz/payloads:ro",
+        "-v", "$HOME/BOAZ-MCP/output:/boaz/output",
+        "-v", "$HOME/BOAZ-MCP/boaz_mcp:/boaz/boaz_mcp:ro",
+        "mmttxx20/boaz-builder",
+        "python3", "/boaz/boaz_mcp/server.py"
+      ],
       "env": {
-        "BOAZ_PATH": "/path/to/BOAZ-MCP/BOAZ_beta"
+        "BOAZ_PATH": "/boaz/BOAZ_beta"
       }
     }
   }
 }
 ```
 
-Replace `/path/to/BOAZ-MCP` with your installation directory. Restart your MCP client after configuration.
+**Continue.dev** (`~/.continue/config.json`):
+Same configuration as Claude Desktop above.
+
+**Cursor** (`~/.cursor/mcp_settings.json`):
+Same configuration as Claude Desktop above.
+
+Replace `$HOME/BOAZ-MCP` with your actual installation path.
 
 ## Usage
 
@@ -166,11 +232,15 @@ AI lists available loaders by category.
 
 ## Documentation
 
-- **[AI_AGENTS.md](AI_AGENTS.md)** - Complete guide for AI assistants
-- **[INSTALL.md](INSTALL.md)** - Detailed installation instructions
-- **[USAGE.md](USAGE.md)** - Usage examples and workflows
-- **[API.md](API.md)** - MCP API reference and loader documentation
-- **[mcp_config.json](mcp_config.json)** - Configuration examples
+- **[docs/AI_AGENTS.md](docs/AI_AGENTS.md)** - Complete guide for AI assistants
+- **[docs/INSTALL.md](docs/INSTALL.md)** - Detailed installation instructions
+- **[docs/USAGE.md](docs/USAGE.md)** - Usage examples and workflows
+- **[docs/API.md](docs/API.md)** - MCP API reference and loader documentation
+- **[docs/DOCKER_QUICKSTART.md](docs/DOCKER_QUICKSTART.md)** - Docker quick start guide
+- **[examples/mcp_config.json](examples/mcp_config.json)** - Configuration examples
+- **[docker/README.md](docker/README.md)** - Docker setup documentation
+- **[install/README.md](install/README.md)** - Installation scripts documentation
+- **[tests/README.md](tests/README.md)** - Test suite documentation
 
 ## Security
 
