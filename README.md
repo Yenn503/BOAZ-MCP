@@ -142,9 +142,17 @@ Use `install/configure_mcp.sh` to automatically configure your client.
 
 ### Manual Configuration
 
-If the auto-configurator doesn't work, see examples for each client:
+If the auto-configurator doesn't work, use these examples. Replace `$HOME/BOAZ-MCP` with your actual installation path.
 
-**Claude Desktop** (`~/.config/Claude/claude_desktop_config.json`):
+---
+
+#### **Claude Desktop**
+
+**Config File Location:**
+- Linux: `~/.config/Claude/claude_desktop_config.json`
+- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+
+**Docker Mode:**
 ```json
 {
   "mcpServers": {
@@ -152,6 +160,8 @@ If the auto-configurator doesn't work, see examples for each client:
       "command": "docker",
       "args": [
         "run", "--rm", "-i",
+        "-v", "$HOME:/host_home:ro",
+        "-v", "$HOME/BOAZ-MCP/BOAZ_beta:/boaz/BOAZ_beta:ro",
         "-v", "$HOME/BOAZ-MCP/payloads:/boaz/payloads:ro",
         "-v", "$HOME/BOAZ-MCP/output:/boaz/output",
         "-v", "$HOME/BOAZ-MCP/boaz_mcp:/boaz/boaz_mcp:ro",
@@ -159,20 +169,182 @@ If the auto-configurator doesn't work, see examples for each client:
         "python3", "/boaz/boaz_mcp/server.py"
       ],
       "env": {
-        "BOAZ_PATH": "/boaz/BOAZ_beta"
+        "BOAZ_PATH": "/boaz/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "/boaz/output"
       }
     }
   }
 }
 ```
 
-**Continue.dev** (`~/.continue/config.json`):
-Same configuration as Claude Desktop above.
+**Local Mode:**
+```json
+{
+  "mcpServers": {
+    "boaz": {
+      "command": "python3",
+      "args": [
+        "$HOME/BOAZ-MCP/boaz_mcp/server.py"
+      ],
+      "env": {
+        "BOAZ_PATH": "$HOME/BOAZ-MCP/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "$HOME/BOAZ-MCP/BOAZ_beta/output"
+      }
+    }
+  }
+}
+```
 
-**Cursor** (`~/.cursor/mcp_settings.json`):
-Same configuration as Claude Desktop above.
+---
 
-Replace `$HOME/BOAZ-MCP` with your actual installation path.
+#### **Continue.dev (VS Code)**
+
+**Config File Location:** `~/.continue/config.json`
+
+**Docker Mode:**
+```json
+{
+  "mcpServers": {
+    "boaz": {
+      "command": "docker",
+      "args": [
+        "run", "--rm", "-i",
+        "-v", "$HOME:/host_home:ro",
+        "-v", "$HOME/BOAZ-MCP/BOAZ_beta:/boaz/BOAZ_beta:ro",
+        "-v", "$HOME/BOAZ-MCP/payloads:/boaz/payloads:ro",
+        "-v", "$HOME/BOAZ-MCP/output:/boaz/output",
+        "-v", "$HOME/BOAZ-MCP/boaz_mcp:/boaz/boaz_mcp:ro",
+        "mmttxx20/boaz-builder",
+        "python3", "/boaz/boaz_mcp/server.py"
+      ],
+      "env": {
+        "BOAZ_PATH": "/boaz/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "/boaz/output"
+      }
+    }
+  }
+}
+```
+
+**Local Mode:**
+```json
+{
+  "mcpServers": {
+    "boaz": {
+      "command": "python3",
+      "args": [
+        "$HOME/BOAZ-MCP/boaz_mcp/server.py"
+      ],
+      "env": {
+        "BOAZ_PATH": "$HOME/BOAZ-MCP/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "$HOME/BOAZ-MCP/BOAZ_beta/output"
+      }
+    }
+  }
+}
+```
+
+---
+
+#### **Cursor IDE**
+
+**Config File Location:** `~/.cursor/mcp_settings.json`
+
+**Docker Mode:**
+```json
+{
+  "mcpServers": {
+    "boaz": {
+      "command": "docker",
+      "args": [
+        "run", "--rm", "-i",
+        "-v", "$HOME:/host_home:ro",
+        "-v", "$HOME/BOAZ-MCP/BOAZ_beta:/boaz/BOAZ_beta:ro",
+        "-v", "$HOME/BOAZ-MCP/payloads:/boaz/payloads:ro",
+        "-v", "$HOME/BOAZ-MCP/output:/boaz/output",
+        "-v", "$HOME/BOAZ-MCP/boaz_mcp:/boaz/boaz_mcp:ro",
+        "mmttxx20/boaz-builder",
+        "python3", "/boaz/boaz_mcp/server.py"
+      ],
+      "env": {
+        "BOAZ_PATH": "/boaz/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "/boaz/output"
+      }
+    }
+  }
+}
+```
+
+**Local Mode:**
+```json
+{
+  "mcpServers": {
+    "boaz": {
+      "command": "python3",
+      "args": [
+        "$HOME/BOAZ-MCP/boaz_mcp/server.py"
+      ],
+      "env": {
+        "BOAZ_PATH": "$HOME/BOAZ-MCP/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "$HOME/BOAZ-MCP/BOAZ_beta/output"
+      }
+    }
+  }
+}
+```
+
+---
+
+#### **VS Code (Generic MCP)**
+
+**Config File Location:** `~/.vscode/mcp.json`
+
+**Docker Mode:**
+```json
+{
+  "mcpServers": {
+    "boaz": {
+      "command": "docker",
+      "args": [
+        "run", "--rm", "-i",
+        "-v", "$HOME:/host_home:ro",
+        "-v", "$HOME/BOAZ-MCP/BOAZ_beta:/boaz/BOAZ_beta:ro",
+        "-v", "$HOME/BOAZ-MCP/payloads:/boaz/payloads:ro",
+        "-v", "$HOME/BOAZ-MCP/output:/boaz/output",
+        "-v", "$HOME/BOAZ-MCP/boaz_mcp:/boaz/boaz_mcp:ro",
+        "mmttxx20/boaz-builder",
+        "python3", "/boaz/boaz_mcp/server.py"
+      ],
+      "env": {
+        "BOAZ_PATH": "/boaz/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "/boaz/output"
+      }
+    }
+  }
+}
+```
+
+**Local Mode:**
+```json
+{
+  "mcpServers": {
+    "boaz": {
+      "command": "python3",
+      "args": [
+        "$HOME/BOAZ-MCP/boaz_mcp/server.py"
+      ],
+      "env": {
+        "BOAZ_PATH": "$HOME/BOAZ-MCP/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "$HOME/BOAZ-MCP/BOAZ_beta/output"
+      }
+    }
+  }
+}
+```
+
+---
+
+**Note:** All configurations above use `$HOME/BOAZ-MCP` as the installation path. Replace this with your actual installation path (e.g., `/home/username/BOAZ-MCP`).
 
 ## Usage
 
