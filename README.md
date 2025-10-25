@@ -140,7 +140,99 @@ BOAZ MCP works with ALL MCP-compatible clients:
 
 Use `install/configure_mcp.sh` to automatically configure your client.
 
-### Manual Configuration
+---
+
+### ⭐ Continue.dev Users - Quick Setup
+
+**Having trouble connecting Continue.dev?** This is now fixed!
+
+**Automatic Setup (Recommended):**
+```bash
+cd BOAZ-MCP
+./install/configure_mcp.sh
+```
+
+**What happens:**
+1. Script detects Docker availability
+2. Asks: "Use Docker mode? [Y/n]" (Choose Y for no compilation)
+3. Shows menu with options:
+   - Option 1: Claude Desktop
+   - **Option 2: Continue.dev (VS Code)** ← Select this
+   - Option 3: Cursor IDE
+   - Option 4: VS Code (generic MCP)
+   - Option 5: All of the above
+4. Auto-configures `~/.continue/config.json` (merges with existing config)
+5. Shows success message
+
+**After auto-config:**
+1. Reload VS Code window: `Cmd/Ctrl + Shift + P` → "Developer: Reload Window"
+2. Check MCP tools appear in Continue.dev
+3. Test: "List available BOAZ loaders"
+
+---
+
+**Manual Configuration (if auto-config doesn't work):**
+
+Edit `~/.continue/config.json` and add:
+
+**Docker Mode (No Compilation - 5 Minutes):**
+```json
+{
+  "mcpServers": {
+    "boaz": {
+      "command": "docker",
+      "args": [
+        "run", "--rm", "-i",
+        "-v", "$HOME:/host_home:ro",
+        "-v", "$HOME/BOAZ-MCP/BOAZ_beta:/boaz/BOAZ_beta:ro",
+        "-v", "$HOME/BOAZ-MCP/payloads:/boaz/payloads:ro",
+        "-v", "$HOME/BOAZ-MCP/output:/boaz/output",
+        "-v", "$HOME/BOAZ-MCP/boaz_mcp:/boaz/boaz_mcp:ro",
+        "mmttxx20/boaz-builder",
+        "python3", "/boaz/boaz_mcp/server.py"
+      ],
+      "env": {
+        "BOAZ_PATH": "/boaz/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "/boaz/output"
+      }
+    }
+  }
+}
+```
+
+**Local Mode (After running `./install/setup.sh`):**
+```json
+{
+  "mcpServers": {
+    "boaz": {
+      "command": "python3",
+      "args": [
+        "$HOME/BOAZ-MCP/boaz_mcp/server.py"
+      ],
+      "env": {
+        "BOAZ_PATH": "$HOME/BOAZ-MCP/BOAZ_beta",
+        "BOAZ_OUTPUT_DIR": "$HOME/BOAZ-MCP/BOAZ_beta/output"
+      }
+    }
+  }
+}
+```
+
+**After configuration:**
+1. Save the file
+2. Reload VS Code window (Cmd/Ctrl + Shift + P → "Developer: Reload Window")
+3. Check MCP tools are available in Continue.dev
+4. Test with: "List available BOAZ loaders"
+
+**Common Issues Fixed:**
+- ✅ No more Akira/Pluto compilation errors (use Docker mode)
+- ✅ Correct volume mounts (BOAZ_beta now included)
+- ✅ Proper environment variables
+- ✅ Works with Continue.dev MCP support
+
+---
+
+### Manual Configuration for All Clients
 
 If the auto-configurator doesn't work, use these examples. Replace `$HOME/BOAZ-MCP` with your actual installation path.
 
